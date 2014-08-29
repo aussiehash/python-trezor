@@ -27,7 +27,7 @@ setup(
         'trezorlib.types_pb2',
     ],
     test_suite='tests',
-    install_requires=['ecdsa>=0.9', 'protobuf', 'mnemonic>=0.8', 'hidapi>=0.7.99'],
+    install_requires=['ecdsa>=0.9', 'protobuf==2.5.0', 'mnemonic>=0.8', 'hidapi>=0.7.99'],
     include_package_data=True,
     zip_safe=False,
     classifiers=[
