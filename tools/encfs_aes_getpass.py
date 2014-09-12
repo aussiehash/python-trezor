@@ -107,7 +107,7 @@ def main():
                 binascii.unhexlify(data['password_encrypted_hex']),
                 False, True)
 
-    print passw.encode('hex')
+    print passw.encode('base64')
 
 if __name__ == '__main__':
     main()
