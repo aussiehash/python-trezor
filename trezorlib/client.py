@@ -182,8 +182,6 @@ class TextUIMixin(object):
             log("Passphrase did not match! ")
             exit()
 
-        return proto.PassphraseAck(passphrase=passphrase)
-
     def callback_WordRequest(self, msg):
         log("Enter one word of mnemonic: ")
         word = raw_input()
