@@ -11,6 +11,7 @@ import tools
 import messages_pb2 as proto
 import types_pb2 as types
 import protobuf_json
+import getpass
 from trezorlib.debuglink import DebugLink
 from mnemonic import Mnemonic
 
@@ -165,13 +166,21 @@ class TextUIMixin(object):
             desc = 'PIN'
 
         log("Please enter %s: " % desc)
-        pin = raw_input()
+        pin = getpass.getpass('')
         return proto.PinMatrixAck(pin=pin)
 
     def callback_PassphraseRequest(self, msg):
         log("Passphrase required: ")
-        passphrase = raw_input()
+        passphrase = getpass.getpass('')
         passphrase = unicode(str(bytearray(passphrase, 'utf-8')), 'utf-8')
+        log("Confirm your Passphrase: ")
+        passphrase2 = getpass.getpass('')
+        passphrase2 = unicode(str(bytearray(passphrase2, 'utf-8')), 'utf-8')
+        if passphrase == passphrase2:
+            return proto.PassphraseAck(passphrase=passphrase)
+        else:
+            log("Passphrase did not match! ")
+            exit()
 
         return proto.PassphraseAck(passphrase=passphrase)
 
